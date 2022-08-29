@@ -19,6 +19,7 @@ public class LoginPage extends BaseClass{
 	@AndroidFindBy(accessibility = "test-LOGIN")
 	AndroidElement loginBtn;
 	
+	
 	public LoginPage() {
 	/*
 	 * Decorator is a structural pattern that allows adding new behaviors to objects 
@@ -33,5 +34,9 @@ public class LoginPage extends BaseClass{
 		userNameTxtBox.sendKeys(userName);
 		passwordTxtBox.sendKeys(passWord);
 		Gestures.simpleTapAction(loginBtn);
+	}
+	
+	public void scrollingDownToElement() {
+		Gestures.scrollingVertically("secret_sauce");
 	}
 }

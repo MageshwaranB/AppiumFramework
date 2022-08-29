@@ -21,6 +21,11 @@ public class LoginPageTest extends BaseClass
 		loginFunction.logIntoApplication(prop.getProperty("username"), prop.getProperty("password"));
 	}
 	
+	@Test
+	public void scrollToElement() {
+		loginFunction.scrollingDownToElement();
+	}
+	
 	@AfterMethod
 	public void close() {
 		tearDown();
