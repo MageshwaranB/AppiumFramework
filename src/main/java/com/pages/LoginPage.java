@@ -19,6 +19,8 @@ public class LoginPage extends BaseClass{
 	@AndroidFindBy(accessibility = "test-LOGIN")
 	AndroidElement loginBtn;
 	
+	@AndroidFindBy(accessibility = "test-Error message")
+	AndroidElement loginErrorMessage;
 	
 	public LoginPage() {
 	/*
@@ -30,11 +32,24 @@ public class LoginPage extends BaseClass{
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
 	
-	public void logIntoApplication(String userName, String passWord) {
-		userNameTxtBox.sendKeys(userName);
-		passwordTxtBox.sendKeys(passWord);
+	ProductPage products=new ProductPage();
+	public String logIntoApplication(String user, String pass,String scenario) {
+		String validUser=null;
+		userNameTxtBox.sendKeys(user);
+		passwordTxtBox.sendKeys(pass);
 		Gestures.simpleTapAction(loginBtn);
+		if(scenario.equalsIgnoreCase("negative")) {
+			validUser=loginErrorMessage.getText();
+			userNameTxtBox.clear();
+			passwordTxtBox.clear();
+		}
+		else {
+			products.logoutWithoutGestures();
+		}
+		return validUser;
 	}
+	
+	
 	
 	public void scrollingDownToElement() {
 		Gestures.scrollingVertically("secret_sauce");
