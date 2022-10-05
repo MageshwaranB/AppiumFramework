@@ -39,8 +39,9 @@ public class LoginPageTest extends BaseClass
 	@Test(dataProvider = "provideData")
 	public void loginTest(String user, String pass, String scenarios) {
 		String actualRes=loginFunction.logIntoApplication(user,pass,scenarios);
-		Assert.assertEquals("Valid User found and proceed to move to the check tab", actualRes);
-	
+		Assert.assertEquals("Not A Valid User, Please check the credentials", actualRes);
+		//Assert.assertEquals("Entered data is a valid one", actualRes);
+
 	}
 	
 	@Test

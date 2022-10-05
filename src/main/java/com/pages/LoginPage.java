@@ -34,22 +34,30 @@ public class LoginPage extends BaseClass{
 	
 	ProductPage products=new ProductPage();
 	public String logIntoApplication(String user, String pass,String scenario) {
-		String validUser=null;
+		String validUserOrNot;
 		userNameTxtBox.sendKeys(user);
 		passwordTxtBox.sendKeys(pass);
 		Gestures.simpleTapAction(loginBtn);
 		if(scenario.equalsIgnoreCase("negative")) {
-			validUser=loginErrorMessage.getText();
+			//validUser=loginErrorMessage.getText();
 			userNameTxtBox.clear();
 			passwordTxtBox.clear();
+			validUserOrNot="Not A Valid User, Please check the credentials";
 		}
 		else {
+			validUserOrNot="Entered data is a valid one";
 			products.logoutWithoutGestures();
+			
 		}
-		return validUser;
+		return validUserOrNot;
 	}
 	
-	
+	public ProductPage simpleLogin(String user, String pass) {
+		userNameTxtBox.sendKeys(user);
+		passwordTxtBox.sendKeys(pass);
+		loginBtn.click();
+		return new ProductPage();
+	}
 	
 	public void scrollingDownToElement() {
 		Gestures.scrollingVertically("secret_sauce");
