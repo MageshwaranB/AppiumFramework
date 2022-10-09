@@ -27,6 +27,9 @@ public class ProductPage extends BaseClass
 	@AndroidFindBy(accessibility = "test-BACK TO PRODUCTS")
 	AndroidElement backToProductsButton;
 	
+	@AndroidFindBy(accessibility = "test-Toggle")
+	AndroidElement toggleToViewModeButton;
+	
 	public ProductPage() {
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
@@ -72,5 +75,6 @@ public class ProductPage extends BaseClass
 		}
 		return validationMessage;
 	}
+	
 	
 }
