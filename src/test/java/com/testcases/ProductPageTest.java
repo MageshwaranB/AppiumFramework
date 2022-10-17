@@ -31,6 +31,13 @@ public class ProductPageTest extends BaseClass{
 		Assert.assertEquals("All the elements are present and clickable", actText);
 	}
 	
+	@Test
+	public void validatingAllAvailableInVerticalListTest() {
+		loginFunction.simpleLogin(prop.getProperty("username"), prop.getProperty("password"));
+		String actText=products.verticalProductsView();
+		Assert.assertEquals("All the elements are present and clickable", actText);
+	}
+	
 	@AfterClass
 	public void close() {
 		tearDown();

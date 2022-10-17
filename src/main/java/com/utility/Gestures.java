@@ -19,8 +19,11 @@ public class Gestures extends BaseClass{
 		touch.tap(ElementOption.element(androidElement)).perform();
 	}
 	
-	public static void scrollingVertically(String androidElement) {
-		driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+androidElement+"\" ))");
+	public static void scrollIntoViewMethod(String elementText) {
+		
+		driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+elementText+"\"))").click();;
+		String val="\"" +elementText + "\"";
+		System.out.println(val);
 	}
 	
 	

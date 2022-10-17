@@ -60,6 +60,6 @@ public class LoginPage extends BaseClass{
 	}
 	
 	public void scrollingDownToElement() {
-		Gestures.scrollingVertically("secret_sauce");
+		Gestures.scrollIntoViewMethod("secret_sauce");
 	}
 }
