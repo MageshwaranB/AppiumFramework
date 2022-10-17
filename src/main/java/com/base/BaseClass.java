@@ -45,7 +45,7 @@ public class BaseClass {
 			desiredCap.setCapability("appActivity", "com.swaglabsmobileapp.MainActivity");
 			URL url = new URL("http://127.0.0.1:4723/wd/hub");
 			driver = new AndroidDriver<AndroidElement>(url, desiredCap);
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
