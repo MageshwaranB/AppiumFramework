@@ -38,6 +38,27 @@ public class ProductPageTest extends BaseClass{
 		Assert.assertEquals("All the elements are present and clickable", actText);
 	}
 	
+	@Test
+	public void filterOutProductsPriceTest() {
+		loginFunction.simpleLogin(prop.getProperty("username"), prop.getProperty("password"));
+		int actValue=products.filterByPrice();
+		System.out.println(actValue);
+	}
+	
+	@Test
+	public void filterOutProductsNameTest() {
+		loginFunction.simpleLogin(prop.getProperty("username"), prop.getProperty("password"));
+		String actValue=products.filterByName();
+		System.out.println(actValue);
+		Assert.assertEquals("Both the named filters are working as expected", actValue);
+	}
+	
+	@Test
+	public void dummyTest() {
+		loginFunction.simpleLogin(prop.getProperty("username"), prop.getProperty("password"));
+		//products.getProductsText();
+	}
+	
 	@AfterClass
 	public void close() {
 		tearDown();
