@@ -40,4 +40,23 @@ public class Gestures extends BaseClass{
 		.moveTo(PointOption.point(0,scrollEndHeight))
 		.release().perform();
 	}
+	
+	public static void scrollUpUsingDimension() {
+		Dimension dimension=driver.manage().window().getSize();
+		Double scrollStartHeightDouble=dimension.getHeight()*0.1;
+		int scrollStartHeight=scrollStartHeightDouble.intValue();
+		Double scrollEndHeightDouble=dimension.getHeight()*0.8;
+		int scrollEndHeight=scrollEndHeightDouble.intValue();
+		
+		new TouchAction(driver)
+		.press(PointOption.point(0,scrollStartHeight))
+		.waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+		.moveTo(PointOption.point(0,scrollEndHeight))
+		.release().perform();
+	}
+	
+	public static void scrollUpAndDown(String exactText) {
+		driver.findElementByAndroidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\""+exactText+"\").instance(0))");
+	}
 }

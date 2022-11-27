@@ -6,8 +6,8 @@
       <class name="com.testcases.ProductPageTest">
         <methods>
           <include name="close"/>
-          <include name="validatingAllAvailableProductsTest"/>
           <include name="setup"/>
+          <include name="filterOutProductsNameTest"/>
         </methods>
       </class> <!-- com.testcases.ProductPageTest -->
     </classes>
