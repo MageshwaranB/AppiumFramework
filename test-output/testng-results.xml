@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="4" total="5" passed="1" failed="0" skipped="0">
+<testng-results ignored="9" total="10" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-11-27T20:26:31 IST" name="Default suite" finished-at="2022-11-27T20:27:47 IST" duration-ms="75486">
+  <suite started-at="2022-12-10T19:05:12 IST" name="Default suite" finished-at="2022-12-10T19:05:43 IST" duration-ms="31232">
     <groups>
     </groups>
-    <test started-at="2022-11-27T20:26:31 IST" name="Default test" finished-at="2022-11-27T20:27:47 IST" duration-ms="75486">
+    <test started-at="2022-12-10T19:05:12 IST" name="Default test" finished-at="2022-12-10T19:05:43 IST" duration-ms="31232">
       <class name="com.testcases.ProductPageTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.testcases.ProductPageTest@5d7148e2]" started-at="2022-11-27T20:26:31 IST" name="setup" finished-at="2022-11-27T20:26:46 IST" duration-ms="14436" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.testcases.ProductPageTest@16a0ee18]" started-at="2022-12-10T19:05:12 IST" name="setup" finished-at="2022-12-10T19:05:26 IST" duration-ms="13630" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="filterOutProductsNameTest()[pri:0, instance:com.testcases.ProductPageTest@5d7148e2]" started-at="2022-11-27T20:26:46 IST" name="filterOutProductsNameTest" finished-at="2022-11-27T20:27:46 IST" duration-ms="60466" status="PASS">
+        <test-method signature="webViewFunctionalityTest()[pri:0, instance:com.testcases.ProductPageTest@16a0ee18]" started-at="2022-12-10T19:05:26 IST" name="webViewFunctionalityTest" finished-at="2022-12-10T19:05:43 IST" duration-ms="17153" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- filterOutProductsNameTest -->
-        <test-method is-config="true" signature="close()[pri:0, instance:com.testcases.ProductPageTest@5d7148e2]" started-at="2022-11-27T20:27:46 IST" name="close" finished-at="2022-11-27T20:27:47 IST" duration-ms="541" status="PASS">
+        </test-method> <!-- webViewFunctionalityTest -->
+        <test-method is-config="true" signature="close()[pri:0, instance:com.testcases.ProductPageTest@16a0ee18]" started-at="2022-12-10T19:05:43 IST" name="close" finished-at="2022-12-10T19:05:43 IST" duration-ms="397" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- close -->

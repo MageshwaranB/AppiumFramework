@@ -1,12 +1,18 @@
 package com.testcases;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.base.BaseClass;
+import com.pages.AboutSwagLabsPage;
+import com.pages.CheckOutPage;
+import com.pages.DrawingPage;
+import com.pages.GeoLocationPage;
 import com.pages.LoginPage;
 import com.pages.ProductPage;
+import com.pages.WebViewPage;
+import com.utility.RandomData;
 
 import junit.framework.Assert;
 
@@ -15,7 +21,7 @@ public class ProductPageTest extends BaseClass{
 	
 	LoginPage loginFunction;
 	ProductPage products;
-	@BeforeClass
+	@BeforeMethod
 	public void setup() {
 		initialization();
 		loginFunction=new LoginPage();
@@ -54,12 +60,69 @@ public class ProductPageTest extends BaseClass{
 	}
 	
 	@Test
-	public void dummyTest() {
-		loginFunction.simpleLogin(prop.getProperty("username"), prop.getProperty("password"));
-		//products.getProductsText();
+	public void addingProductsToCartTest() {
+		String confirmationText=loginFunction.loginMethodChaining(prop.getProperty("username"), prop.getProperty("password"))
+		.navigateToProductPage(new ProductPage())
+		.addToCart().navigateToCheckoutAndPaymentPage(new CheckOutPage())
+		.checkoutProcess(new RandomData());
+		System.out.println(confirmationText);
+		Assert.assertEquals("\"FINISH\"\r\n"
+				+ "THANK YOU FOR YOU ORDER", confirmationText);
 	}
 	
-	@AfterClass
+	@Test
+	public void webViewFunctionalityTest() {
+		String confirmationText=loginFunction.loginMethodChaining(prop.getProperty("username"), prop.getProperty("password"))
+											.navigateToProductPage(new ProductPage())
+											.webViewFunctionality()
+											.navigateToWebViewPage(new WebViewPage())
+											.navigateToAWebsite(prop.getProperty("url"));
+		System.out.println(confirmationText);
+		Assert.assertEquals("Google", confirmationText);
+	}
+	
+	@Test
+	public void geoLocationFunctionalityTest() {
+		String confirmationText=loginFunction.loginMethodChaining(prop.getProperty("username"), prop.getProperty("password"))
+				.navigateToProductPage(new ProductPage())
+				.geoLocationFunctionality()
+				.navigateToGeoLocationPage(new GeoLocationPage())
+				.geoLocationLatAndLong();
+		System.out.println(confirmationText);
+		Assert.assertEquals("Latitude and longtitude values are generated", confirmationText);
+	}
+	
+	@Test
+	public void drawingFunctionalityTest() {
+		String confirmationText=loginFunction.loginMethodChaining(prop.getProperty("username"), prop.getProperty("password"))
+		.navigateToProductPage(new ProductPage())
+		.drawingFunctionality()
+		.navigateToDrawingPage(new DrawingPage())
+		.drawingSomethingInTheBoard();
+		Assert.assertEquals("The image is erased", confirmationText);
+	}
+	
+	@Test
+	public void aboutSwagLabsFunctionalityTest() {
+		boolean textPresentOrNot=loginFunction.loginMethodChaining(prop.getProperty("username"), prop.getProperty("password"))
+		.navigateToProductPage(new ProductPage())
+		.aboutSwagLabsFunctionality()
+		.navigateToAboutSwagLabsPage(new AboutSwagLabsPage())
+		.swagLabsParentPage();
+		System.out.println(textPresentOrNot);
+		Assert.assertEquals(true, textPresentOrNot);
+	}
+	
+	@Test
+	public void resetAppFunctionalityTest() {
+		boolean resetAppStatus=loginFunction.loginMethodChaining(prop.getProperty("username"), prop.getProperty("password"))
+		.navigateToProductPage(new ProductPage())
+		.resetAppStatus();
+		System.out.println(resetAppStatus);
+		Assert.assertEquals(true, resetAppStatus);
+	}
+	
+	@AfterMethod
 	public void close() {
 		tearDown();
 	}

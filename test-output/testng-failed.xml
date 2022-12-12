@@ -7,7 +7,7 @@
         <methods>
           <include name="close"/>
           <include name="setup"/>
-          <include name="filterOutProductsNameTest"/>
+          <include name="resetAppFunctionalityTest"/>
         </methods>
       </class> <!-- com.testcases.ProductPageTest -->
     </classes>

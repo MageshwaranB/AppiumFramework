@@ -6,6 +6,7 @@ import org.openqa.selenium.Dimension;
 
 import com.base.BaseClass;
 
+import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.touch.WaitOptions;
@@ -58,5 +59,28 @@ public class Gestures extends BaseClass{
 	public static void scrollUpAndDown(String exactText) {
 		driver.findElementByAndroidUIAutomator(
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\""+exactText+"\").instance(0))");
+	}
+	
+	public static void dualTouchGesture() {
+		Dimension dimension=driver.manage().window().getSize();
+		int scrollStartHeight=(int) (dimension.getHeight()*0.4);
+		int scrollEndHeight=(int)(dimension.getHeight()*0.7);
+		int scrollWidthAnchor=(int)(dimension.getWidth()*0.3);
+		TouchAction touch1=new TouchAction(driver)
+		.press(PointOption.point(scrollWidthAnchor,scrollStartHeight))
+		.waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+		.moveTo(PointOption.point(scrollWidthAnchor,scrollEndHeight))
+		.release().perform()
+		;
+		
+		
+		Double swipeToRightEnds=dimension.getWidth()*0.7;
+		int swipeToRight=swipeToRightEnds.intValue();
+		TouchAction touch2=new TouchAction(driver)
+		.press(PointOption.point(scrollWidthAnchor, scrollEndHeight))
+		.waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+		.moveTo(PointOption.point(swipeToRight, scrollEndHeight))
+		.release().perform();
+		
 	}
 }

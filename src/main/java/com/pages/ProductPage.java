@@ -12,9 +12,11 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.base.BaseClass;
 import com.utility.Gestures;
+import com.utility.RandomData;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -52,10 +54,59 @@ public class ProductPage extends BaseClass
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@content-desc=\"test-Price\"])")
 	List<AndroidElement> productPrice;
 	
+	@AndroidFindBy(accessibility = "test-CHECKOUT")
+	AndroidElement checkoutBtn;
+	
+	@AndroidFindBy(accessibility = "test-Cart")
+	AndroidElement cartButton;
+	
+	@AndroidFindBy(accessibility = "test-First Name")
+	AndroidElement firstNameTxtBox;
+	
+	@AndroidFindBy(accessibility = "test-Last Name")
+	AndroidElement lastNameTxtBox;
+	
+	@AndroidFindBy(accessibility = "test-Zip/Postal Code")
+	AndroidElement zipCodeTxtBox;
+	@AndroidFindBy(accessibility = "test-CONTINUE")
+	AndroidElement checkoutContinueBtn;
+	@AndroidFindBy(accessibility = "test-Close")
+	AndroidElement navBarClose;
+	@AndroidFindBy(accessibility = "test-ALL ITEMS")
+	AndroidElement allItemsBtn;
+	@AndroidFindBy(accessibility = "test-WEBVIEW")
+	AndroidElement webViewBtn;
+	@AndroidFindBy(accessibility = "test-QR CODE SCANNER")
+	AndroidElement qrCodeScannerBtn;
+	@AndroidFindBy(accessibility = "test-GEO LOCATION")
+	AndroidElement geoLocationBtn;
+	@AndroidFindBy(accessibility = "test-DRAWING")
+	AndroidElement drawingFunctionalityBtn;
+	@AndroidFindBy(accessibility = "test-ABOUT")
+	AndroidElement aboutSwagLabsBtn;
+	@AndroidFindBy(accessibility = "test-LOGOUT")
+	AndroidElement logoutAppBtn;
+	@AndroidFindBy(accessibility = "test-RESET APP STATE")
+	AndroidElement resetAppStateBtn;
+	@AndroidFindBy(accessibility = "test-Menu")
+	AndroidElement navBarBtn;
+	@AndroidFindBy(id = "android:id/button_once")
+	AndroidElement justOnceBtn;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Chrome']")
+	AndroidElement openWithChromeOption;
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-Cart\"]/android.view.ViewGroup/android.widget.TextView")
+	AndroidElement cartValue;
+	@AndroidFindBy(xpath = "(//android.view.ViewGroup[@content-desc=\"test-REMOVE\"])[1]")
+	AndroidElement removeBtn;
 	public ProductPage() {
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
 
+	CheckOutPage checkout;
+	WebViewPage webView;
+	GeoLocationPage geoLocation;
+	DrawingPage drawing;
+	AboutSwagLabsPage about;
 	public void logoutWithoutGestures() {
 		burgerButton.click();
 		logoutButton.click();
@@ -414,5 +465,80 @@ public class ProductPage extends BaseClass
 				filteredProductList.add(product);
 			}
 		}
+	}
+	
+	RandomData data=new RandomData();
+	public ProductPage addToCart() {
+		MobileElement addToCart=allVerticalElements.get(0).findElement(By.xpath("(//android.view.ViewGroup[@content-desc=\"test-ADD TO CART\"])"));
+		addToCart.click();
+		cartButton.click();
+		return this;
+	}
+	
+	public boolean resetAppStatus() {
+		int count=0;
+		String currentProductsInCart=null, afterReset=null; 
+		List<MobileElement> twoBaseProducts=allAvailableProducts.get(0).findElements(By.xpath("(//android.view.ViewGroup[@content-desc=\"test-ADD TO CART\"])"));
+		for(MobileElement standaloneProduct:twoBaseProducts) {
+			standaloneProduct.click();
+			count++;
+		}
+		currentProductsInCart=cartValue.getText();
+		System.out.println(currentProductsInCart);
+		navBarBtn.click();
+		resetAppStateBtn.click();
+		afterReset=driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc=\"test-Cart\"]/android.view.ViewGroup/android.widget.ImageView")).getText();
+		return ((!currentProductsInCart.equals(afterReset)));	
+	}
+	
+	
+	public CheckOutPage navigateToCheckoutAndPaymentPage(CheckOutPage checkout) {
+		this.checkout=checkout;
+		return checkout;
+	}
+	
+	public ProductPage webViewFunctionality() {
+		navBarBtn.click();
+		webViewBtn.click();
+		return this;
+	}
+	
+	public WebViewPage navigateToWebViewPage(WebViewPage webView) {
+		this.webView=webView;
+		return webView;
+	}
+	public ProductPage geoLocationFunctionality() {
+		navBarBtn.click();
+		geoLocationBtn.click();
+		return this;
+	}
+	
+	public GeoLocationPage navigateToGeoLocationPage(GeoLocationPage geoLocation) {
+		this.geoLocation=geoLocation;
+		return geoLocation;
+	}
+	
+	public ProductPage drawingFunctionality() {
+		navBarBtn.click();
+		drawingFunctionalityBtn.click();
+		return this;
+	}
+	
+	public DrawingPage navigateToDrawingPage(DrawingPage drawing) {
+		this.drawing=drawing;
+		return drawing;
+	}
+	
+	public ProductPage aboutSwagLabsFunctionality() {
+		navBarBtn.click();
+		aboutSwagLabsBtn.click();
+		//openWithChromeOption.click();
+		justOnceBtn.click();
+		return this;
+	}
+	
+	public AboutSwagLabsPage navigateToAboutSwagLabsPage(AboutSwagLabsPage about) {
+		this.about=about;
+		return about;
 	}
 }
